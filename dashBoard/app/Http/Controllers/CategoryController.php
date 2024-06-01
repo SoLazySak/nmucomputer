@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class CategoryController extends Controller
 {
@@ -12,7 +14,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view("product.category");
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $category->prodCate;
+            $category->created_at_formatted = Carbon::parse($category->created_at)->format('d/m/Y');
+            $category->updated_at_formatted = Carbon::parse($category->updated_at)->format('d/m/Y');
+        }
+
+        return view("product.category",compact("categories"));
     }
 
     /**
@@ -29,6 +38,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            "prodCate"=> "required",
+        ]);
+        $category = new Category();
+        $category->prodCate = $request->prodCate;
+        $category->save();
+        return redirect("/category")->with("success","");
+
     }
 
     /**

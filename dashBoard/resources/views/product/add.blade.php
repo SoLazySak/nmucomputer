@@ -26,21 +26,18 @@
                                 <div class="form-group col-4">
                                     <label for="categId">ប្រភេទទំនិញ <a class="p-2" href="{{ route('addCate') }}" >+</a></label>
                                     <select class="form-control" name="categId" id="categId">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                        @foreach ($categories as $category)
+                                        <option>{{$category->prodCate}}</option>
+                                        @endforeach
+                                        
                                     </select>
                                 </div>
                                 <div class="form-group col-4">
                                     <label for="brandId">ម៉ាកយីហោ <a class="p-2" href="{{ route('addBrand') }}" >+</a></label>
                                     <select class="form-control" name="brandId" id="brandId">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
+                                        @foreach ($brands as $brand)
+                                        <option>{{$brand->prodBrand}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

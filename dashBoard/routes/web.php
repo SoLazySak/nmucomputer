@@ -26,7 +26,11 @@ Route::get('/product/add', [App\Http\Controllers\ProductController::class, 'add'
 
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('addCate');
+Route::post('/category/store', [App\Http\Controllers\CategoryController::class, 'store'])->name('storeCate');
+
+
 Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('addBrand');
+Route::post('/brand/store', [App\Http\Controllers\BrandController::class, 'store'])->name('storeBrand');
 
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('orderList');
 

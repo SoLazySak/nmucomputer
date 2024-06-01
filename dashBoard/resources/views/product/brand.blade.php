@@ -3,7 +3,8 @@
     បន្ថែមយីហោថ្មី
 @endsection
 @section('content')
-    <form>
+    <form method="POST" action="{{ route('storeBrand') }}">
+        @csrf
         <div class="card-body">
             <div class="form-group">
                 <label for="prodBrand">ឈ្មោះយីហោ</label>
@@ -40,12 +41,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td>១២៣</td>
-                            </tr>
+                           @foreach ($brands as $brand)
+                           <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{$brand->prodBrand}}</td>
+                            <td>{{$brand->created_at_formatted}}</td>
+                            <td>{{$brand->updated_at_formatted}}</td>
+
+                        </tr>
+                           @endforeach
                         </tbody>
                     </table>
                 </div>

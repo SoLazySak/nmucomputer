@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+
 
 class BrandController extends Controller
 {
@@ -12,7 +14,13 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view("product.brand");
+        $brands = Brand::all();
+        foreach ($brands as $brand) {
+            $brand->prodBrand;
+            $brand->created_at_formatted = Carbon::parse($brand->created_at)->format('d/m/Y');
+            $brand->updated_at_formatted = Carbon::parse($brand->updated_at)->format('d/m/Y');
+        }
+        return view("product.brand", compact("brands"));
     }
 
     /**
@@ -29,8 +37,16 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
+        // dd('test');
+        $request->validate([
+            "prodBrand"=> "required",
+        ]);
+        $brand = new Brand();
+        $brand->prodBrand = $request->prodBrand;
+       
+        $brand->save();
+        return redirect("/brand")->with("success","");
     }
-
     /**
      * Display the specified resource.
      */

@@ -3,7 +3,8 @@
     បន្ថែមទំនិញថ្មី
 @endsection
 @section('content')
-    <form>
+    <form method="POST" action="{{ route('storeCate') }}">
+        @csrf
         <div class="card-body">
             <div class="form-group">
                 <label for="prodCate">ប្រភេទទំនិញ</label>
@@ -40,12 +41,15 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($categories as $category)
                             <tr>
-                                <td>183</td>
-                                <td>John Doe</td>
-                                <td>11-7-2014</td>
-                                <td>១២៣</td>
-                            </tr>
+                             <td>{{ $loop->iteration }}</td>
+                             <td>{{$category->prodCate}}</td>
+                             <td>{{$category->created_at_formatted}}</td>
+                             <td>{{$category->updated_at_formatted}}</td>
+ 
+                         </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
