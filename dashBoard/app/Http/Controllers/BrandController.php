@@ -14,14 +14,10 @@ class BrandController extends Controller
      * Display a listing of the resource.
      */
 
-    public function __construct()
-    {
-        $this->middleware('Authenticate');
-    }
 
     public function index()
     {
-        $brands = Brand::where('user_id','=','Authenticate');
+        $brands = Brand::all();
         foreach ($brands as $brand) {
             $brand->prodBrand;
             $brand->created_at_formatted = Carbon::parse($brand->created_at)->format('d/m/Y');
