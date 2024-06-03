@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Authenticate;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -12,15 +13,21 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->middleware('Authenticate');
+    }
+
     public function index()
     {
-        $brands = Brand::all();
+        $brands = Brand::where('user_id','=','Authenticate');
         foreach ($brands as $brand) {
             $brand->prodBrand;
             $brand->created_at_formatted = Carbon::parse($brand->created_at)->format('d/m/Y');
             $brand->updated_at_formatted = Carbon::parse($brand->updated_at)->format('d/m/Y');
         }
-        return view("product.brand", compact("brands"));
+        return view("product.brand.brand", compact("brands"));
     }
 
     /**
@@ -43,7 +50,7 @@ class BrandController extends Controller
         ]);
         $brand = new Brand();
         $brand->prodBrand = $request->prodBrand;
-       
+
         $brand->save();
         return redirect("/brand")->with("success","");
     }
@@ -60,7 +67,7 @@ class BrandController extends Controller
      */
     public function edit(Brand $brand)
     {
-        //
+        return view('product.brand.edit');
     }
 
     /**

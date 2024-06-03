@@ -31,6 +31,7 @@ Route::post('/category/store', [App\Http\Controllers\CategoryController::class, 
 
 Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('addBrand');
 Route::post('/brand/store', [App\Http\Controllers\BrandController::class, 'store'])->name('storeBrand');
+Route::get('/brand/edit', [App\Http\Controllers\BrandController::class, 'edit'])->name('editBrand');
 
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('orderList');
 

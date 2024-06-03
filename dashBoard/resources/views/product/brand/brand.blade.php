@@ -38,6 +38,7 @@
                                 <th>យីហោ</th>
                                 <th>ថ្ងៃបញ្ជូល</th>
                                 <th>ថ្ងៃកែប្រែ</th>
+                                <th>សកម្មភាព</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,9 @@
                             <td>{{$brand->prodBrand}}</td>
                             <td>{{$brand->created_at_formatted}}</td>
                             <td>{{$brand->updated_at_formatted}}</td>
+                            <td>
+                                <a href="{{route('editBrand')}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </td>
 
                         </tr>
                            @endforeach
