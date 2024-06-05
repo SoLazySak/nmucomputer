@@ -14,8 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['brands', '$categories'])->get();;
-        $products = Product::with(['brand','category'])->get();;
+        // $products = Product::with(['brands', '$categories'])->get();;
+        $products = Product::with(['brand', 'category'])->get();;
         // dd($products);
         return view("product.index", compact("products"));
     }
@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $brands = Brand::all();
         $categories = Category::all();
-        return view("product.add", compact("brands","categories"));
+        return view("product.add", compact("brands", "categories"));
     }
 
     /**
@@ -51,14 +51,22 @@ class ProductController extends Controller
         $product = new Product();
         $product->prod_name = $request->prodName;
         $product->prod_price = $request->prodPrice;
-        $product->image = '';
         $product->stock = $request->prodStock;
         $product->description = 'test';
         $product->rate = 5;
         $product->categId = $request->categId;
         $product->brandId = $request->brandId;
+        // dd($product);
+        if ($request->hasFile('prodImage')) {
+            $prodImage = $request->file('prodImage');
+            $extention = $prodImage->getClientOriginalExtension();
+            $fileName = time() . '.' . $extention;
+            $prodImage->move(public_path('prodIamge'), $fileName);
+            $product->image = $fileName;
+        }
         $product->save();
-        // return redirect("/product")->with("success","");
+        return redirect("/product")->with("success", "");
+
     }
 
     /**

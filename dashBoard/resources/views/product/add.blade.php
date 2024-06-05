@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <h3 class="card-title">សូមបញ្ជូលទំនិញ</h3>
                     </div>
-                    <form action="{{ route('storeprod') }}" method="POST">
+                    <form action="{{ route('storeprod') }}" method="POST"  enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -58,8 +58,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-4">
-                                    <label for="prodPrice">រូបភាព</label>
-                                    <input type="file" class="form-control" id="prodPrice" name="prodPrice"
+                                    <label for="prodImage">រូបភាព</label>
+                                    <input type="file" class="form-control" id="prodImage" name="prodImage"
                                         placeholder="សូមបញ្ជូលរូបភាព...">
                                 </div>
                             </div>

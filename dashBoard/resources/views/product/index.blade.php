@@ -1,5 +1,8 @@
 @extends('layouts.tamplete')
 @section('pageHeader')
+
+
+
 <div class="row mb-2">
 <div class="col-sm-6">
     ស្តុកទំនិញ
@@ -26,7 +29,7 @@
     </div>
     </div>
     </div>
-    
+
     <div class="card-body table-responsive p-0">
     <table class="table table-hover text-nowrap">
     <thead>
@@ -43,14 +46,6 @@
     <tbody>
     @foreach ($products as $product)
     <tr>
-<<<<<<< Updated upstream
-        <td>1</td>
-        <td>{{$product->category}}</td>
-        <td>{{$product->brand}}</td>
-        <td>{{$product->prodName}}</td>
-        <td>{{$product->prodPrice}}</td>
-        <td>5 គ្រឿង</td>
-=======
         <td>{{$loop->iteration}}</td>
         <td>{{$product->category->prodCate}}</td>
         <td>{{$product->brand->prodBrand}}</td>
@@ -58,16 +53,15 @@
         <td>{{$product->prod_price}}</td>
         <td>{{$product->stock}}</td>
         {{-- <td>{{$product->status}}</td> --}}
->>>>>>> Stashed changes
         <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
         </tr>
     @endforeach
     </tbody>
     </table>
     </div>
-    
+
     </div>
-    
+
     </div>
 
 @endsection
