@@ -26,7 +26,7 @@
     </div>
     </div>
     </div>
-    
+
     <div class="card-body table-responsive p-0">
     <table class="table table-hover text-nowrap">
     <thead>
@@ -44,20 +44,21 @@
     @foreach ($products as $product)
     <tr>
         <td>1</td>
-        <td>{{$product->category}}</td>
-        <td>{{$product->brand}}</td>
-        <td>{{$product->prodName}}</td>
-        <td>{{$product->prodPrice}}</td>
-        <td>5 គ្រឿង</td>
+        <td>{{$product->categId->prodCate}}</td>
+        <td>{{$product->brandId->prodBrand}}</td>
+        <td>{{$product->prod_name}}</td>
+        <td>{{$product->prod_price}}</td>
+        <td>{{$product->stock}}</td>
+        {{-- <td>{{$product->status}}</td> --}}
         <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
         </tr>
     @endforeach
     </tbody>
     </table>
     </div>
-    
+
     </div>
-    
+
     </div>
 
 @endsection
