@@ -15,6 +15,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with(['brands', '$categories'])->get();;
+        $products = Product::with(['brand','category'])->get();;
+        // dd($products);
         return view("product.index", compact("products"));
     }
     public function add()
@@ -44,11 +46,19 @@ class ProductController extends Controller
             "brandId"=> "required",
             "prodStock"=> "required",
             "rateId"=> "required",
+            "image"=> "required",
         ]);
-        $category = new Category();
-        $category->prodCate = $request->prodCate;
-        $category->save();
-        return redirect("/category")->with("success","");
+        $product = new Product();
+        $product->prod_name = $request->prodName;
+        $product->prod_price = $request->prodPrice;
+        $product->image = '';
+        $product->stock = $request->prodStock;
+        $product->description = 'test';
+        $product->rate = 5;
+        $product->categId = $request->categId;
+        $product->brandId = $request->brandId;
+        $product->save();
+        // return redirect("/product")->with("success","");
     }
 
     /**

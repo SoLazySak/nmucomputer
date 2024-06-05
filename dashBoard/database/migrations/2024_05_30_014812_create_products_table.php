@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer('stock');
             $table->string('description');
             $table->integer('rate');
+            $table->string('categId');
+            $table->string('brandId');
             $table->timestamps();
         });
     }

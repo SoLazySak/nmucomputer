@@ -15,6 +15,8 @@ class Product extends Model
         "prodPrice",
         "prodStock",
         "prodStatus",
+        "image",
+
     ];
     public function brand()
     {

@@ -43,12 +43,22 @@
     <tbody>
     @foreach ($products as $product)
     <tr>
+<<<<<<< Updated upstream
         <td>1</td>
         <td>{{$product->category}}</td>
         <td>{{$product->brand}}</td>
         <td>{{$product->prodName}}</td>
         <td>{{$product->prodPrice}}</td>
         <td>5 គ្រឿង</td>
+=======
+        <td>{{$loop->iteration}}</td>
+        <td>{{$product->category->prodCate}}</td>
+        <td>{{$product->brand->prodBrand}}</td>
+        <td>{{$product->prod_name}}</td>
+        <td>{{$product->prod_price}}</td>
+        <td>{{$product->stock}}</td>
+        {{-- <td>{{$product->status}}</td> --}}
+>>>>>>> Stashed changes
         <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
         </tr>
     @endforeach

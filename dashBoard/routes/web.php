@@ -23,6 +23,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])->name('index');
 Route::get('/product/add', [App\Http\Controllers\ProductController::class, 'add'])->name('addprod');
+Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeprod');
 
 
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('addCate');
