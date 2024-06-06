@@ -41,21 +41,31 @@
     <th>តម្លៃឯកតា</th>
     <th>ចំនួនក្នុងស្តុក</th>
     <th>ស្ថានភាព</th>
+    <th>មុខងារ</th>
     </tr>
     </thead>
     <tbody>
-    @foreach ($products as $product)
-    {{$product}}
-    {{-- <tr>
-        <td>{{$loop->iteration}}</td>
-        <td>{{$product->categId}}</td>
-        <td>{{$product->categId}}</td>
-        <td>{{$product->prod_name}}</td>
-        <td>{{$product->prod_price}}</td>
-        <td>{{$product->stock}}</td>
-        <td>{{$product->status}}</td>
-        <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
-        </tr> --}}
+        @foreach ($products as $product)
+        <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{ optional($product->category)->prodCate ?? 'No Category' }}</td>
+            <td>{{ optional($product->brand)->prodBrand ?? 'No Brand' }}</td>
+            <td>{{$product->prod_name}}</td>
+            <td>{{$product->prod_price}}</td>
+            <td>{{$product->stock}}</td>
+            {{-- <td>{{$product->status}}</td> --}}
+            <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
+            <td>
+                <form action="{{ route('deleteProd', $product->id) }}" method="POST">
+                    <div class="container">
+                        <a href="{{ route('editProd',$product->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></a>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>   </button>
+                    </div>
+                </form>
+            </td>
+        </tr>
     @endforeach
     </tbody>
     </table>

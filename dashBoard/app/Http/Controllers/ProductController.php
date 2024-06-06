@@ -14,10 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // $products = Product::with(['brands', '$categories'])->get();;
-        $products = Product::with(['brand', 'category'])->get();;
-        dd($products);
-        // return view("product.index", compact("products"));
+        $products = Product::with(['brand', 'category'])->get();
+        // dd($products);
+        return view("product.index", compact("products"));
     }
     public function add()
     {
@@ -75,30 +74,63 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // return view();
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit(Product $product,$id)
     {
-
+        $brands = Brand::all();
+        $categories = Category::all();
+        $product = Product::find($id);
+        return view('product.editProd',compact("brands", "categories"))->with('product',$product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product,$id)
     {
-        //
+        $request->validate([
+            "prodName"=> "required",
+            "prodPrice"=> "required",
+            "categId"=> "required",
+            "brandId"=> "required",
+            "prodStock"=> "required",
+            "prodImage"=> "required",
+            "prodDetails"=> "required",
+            "rateId"=> "required"
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $product->prod_name = $request->prodName;
+        $product->prod_price = $request->prodPrice;
+        $product->stock = $request->prodStock;
+        $product->description = $request->prodDetails;
+        $product->rate = $request->rateId;
+        $product->categId = $request->categId;
+        $product->brandId = $request->brandId;
+        if ($request->hasFile('prodImage')) {
+            $prodImage = $request->file('prodImage');
+            $extention = $prodImage->getClientOriginalExtension();
+            $fileName = time() . '.' . $extention;
+            $prodImage->move(public_path('prodIamge'), $fileName);
+            $product->image = $fileName;
+        }
+        $product->update();
+        return redirect('/product')->with('message','update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product,$id)
     {
-        //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/product')->with('message','delete successfully');
     }
 }
