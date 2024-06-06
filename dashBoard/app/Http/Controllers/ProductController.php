@@ -46,8 +46,9 @@ class ProductController extends Controller
             "brandId"=> "required",
             "prodStock"=> "required",
             "rateId"=> "required",
-            "image"=> "required",
+            "prodImage"=> "required",
         ]);
+
         $product = new Product();
         $product->prod_name = $request->prodName;
         $product->prod_price = $request->prodPrice;
