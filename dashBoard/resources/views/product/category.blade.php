@@ -47,7 +47,6 @@
                              <td>{{$category->prodCate}}</td>
                              <td>{{$category->created_at_formatted}}</td>
                              <td>{{$category->updated_at_formatted}}</td>
- 
                          </tr>
                             @endforeach
                         </tbody>

@@ -38,6 +38,7 @@
                                 <th>យីហោ</th>
                                 <th>ថ្ងៃបញ្ជូល</th>
                                 <th>ថ្ងៃកែប្រែ</th>
+                                <th>មុខងារ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,17 @@
                             <td>{{$brand->prodBrand}}</td>
                             <td>{{$brand->created_at_formatted}}</td>
                             <td>{{$brand->updated_at_formatted}}</td>
+                            <td>
+                                <form action="{{ route('deleteBrand', $brand->id) }}" method="POST">
+                                    <div class="container">
+                                        <a href="#" class="btn btn-info btn-sm"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="{{ route('editBrand',$brand->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen"></i></a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i>   </button>
+                                    </div>
+                                </form>
+                            </td>
 
                         </tr>
                            @endforeach

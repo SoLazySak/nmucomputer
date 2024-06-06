@@ -32,6 +32,11 @@ Route::post('/category/store', [App\Http\Controllers\CategoryController::class, 
 
 Route::get('/brand', [App\Http\Controllers\BrandController::class, 'index'])->name('addBrand');
 Route::post('/brand/store', [App\Http\Controllers\BrandController::class, 'store'])->name('storeBrand');
+Route::get('/brand/{id}/edit', [App\Http\Controllers\BrandController::class, 'edit'])->name('editBrand');
+Route::put('/brand/update/{id}', [App\Http\Controllers\BrandController::class, 'update'])->name('updateBrand');
+Route::delete('/brand/destroy/{id}', [App\Http\Controllers\BrandController::class, 'destroy'])->name('deleteBrand');
+
+
 
 Route::get('/order', [App\Http\Controllers\OrderController::class, 'index'])->name('orderList');
 

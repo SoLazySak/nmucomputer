@@ -45,16 +45,17 @@
     </thead>
     <tbody>
     @foreach ($products as $product)
-    <tr>
+    {{$product}}
+    {{-- <tr>
         <td>{{$loop->iteration}}</td>
-        <td>{{$product->category->prodCate}}</td>
-        <td>{{$product->brand->prodBrand}}</td>
+        <td>{{$product->categId}}</td>
+        <td>{{$product->categId}}</td>
         <td>{{$product->prod_name}}</td>
         <td>{{$product->prod_price}}</td>
         <td>{{$product->stock}}</td>
-        {{-- <td>{{$product->status}}</td> --}}
+        <td>{{$product->status}}</td>
         <td><span class="badge badge-success">កំពុងដំណើរការ</span></td>
-        </tr>
+        </tr> --}}
     @endforeach
     </tbody>
     </table>

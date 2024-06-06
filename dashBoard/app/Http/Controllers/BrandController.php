@@ -43,7 +43,7 @@ class BrandController extends Controller
         ]);
         $brand = new Brand();
         $brand->prodBrand = $request->prodBrand;
-       
+
         $brand->save();
         return redirect("/brand")->with("success","");
     }
@@ -58,24 +58,37 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit( $id)
     {
-        //
+        $brand = Brand::find($id);
+
+
+
+        return view('product.editBrand')->with('brand',$brand);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request ,$id)
     {
-        //
+        $request->validate([
+            'prodBrand'=>'required'
+        ]);
+
+        $brand = Brand::findOrFail($id);
+        $brand->prodBrand = $request->prodBrand;
+        $brand->update();
+        return redirect('/brand')->with('message','update successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy($id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
+        return redirect('/brand')->with('message','delete successfully');
     }
 }
